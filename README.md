@@ -23,7 +23,7 @@ Public names: `ask`, `Magic8Ball`, `RESPONSES`, `Magic8BallError`,
 pip install lupaxa-magic-8ball
 ```
 
-Requires Python 3.10+. The standard library is enough.
+Requires Python 3.11 to 3.15. The standard library is enough.
 
 ## CLI
 

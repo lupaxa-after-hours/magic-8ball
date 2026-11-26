@@ -21,9 +21,7 @@ def test_version(capsys: pytest.CaptureFixture[str]) -> None:
     assert f"magic-8ball {__version__}" in capsys.readouterr().out
 
 
-def test_prints_chosen_response(
-    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
-) -> None:
+def test_prints_chosen_response(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
     """A question prints one classic response."""
     monkeypatch.setattr(
         "lupaxa.magic_8ball.core.secrets.choice",
