@@ -4,13 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from lupaxa.magic_8ball import (
-    RESPONSES,
-    InvalidQuestionError,
-    Magic8Ball,
-    Magic8BallError,
-    ask,
-)
+from lupaxa.magic_8ball import RESPONSES, InvalidQuestionError, Magic8Ball, Magic8BallError, ask
 
 
 def test_responses_are_the_classic_twenty() -> None:
@@ -23,10 +17,7 @@ def test_responses_are_the_classic_twenty() -> None:
 
 def test_ask_returns_a_classic_response(monkeypatch: pytest.MonkeyPatch) -> None:
     """``ask`` returns the phrase chosen from the classic set."""
-    monkeypatch.setattr(
-        "lupaxa.magic_8ball.core.secrets.choice",
-        lambda choices: choices[7],
-    )
+    monkeypatch.setattr("lupaxa.magic_8ball.core.secrets.choice", lambda choices: choices[7])
     assert ask("Will it rain tomorrow?") == "Outlook good."
 
 
@@ -52,10 +43,7 @@ def test_invalid_question_error_is_a_package_error() -> None:
 
 def test_instance_ask_matches_function(monkeypatch: pytest.MonkeyPatch) -> None:
     """``Magic8Ball.ask`` uses the same selection as ``ask``."""
-    monkeypatch.setattr(
-        "lupaxa.magic_8ball.core.secrets.choice",
-        lambda choices: choices[3],
-    )
+    monkeypatch.setattr("lupaxa.magic_8ball.core.secrets.choice", lambda choices: choices[3])
     ball = Magic8Ball()
     assert ball.ask("Will I get a promotion?") == "Yes - definitely."
     assert str(ball) == "Magic 8-Ball Emulator"

@@ -23,10 +23,7 @@ def test_version(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_prints_chosen_response(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
     """A question prints one classic response."""
-    monkeypatch.setattr(
-        "lupaxa.magic_8ball.core.secrets.choice",
-        lambda choices: choices[8],
-    )
+    monkeypatch.setattr("lupaxa.magic_8ball.core.secrets.choice", lambda choices: choices[8])
     assert main(["Will it rain tomorrow?"]) == 0
     assert capsys.readouterr().out.strip() == "Yes."
 
@@ -50,12 +47,6 @@ def test_module_entry_version() -> None:
     src = str(_SRC)
     current = env.get("PYTHONPATH")
     env["PYTHONPATH"] = src if not current else src + os.pathsep + current
-    proc = subprocess.run(
-        [sys.executable, "-m", "lupaxa.magic_8ball", "--version"],
-        capture_output=True,
-        text=True,
-        check=False,
-        env=env,
-    )
+    proc = subprocess.run([sys.executable, "-m", "lupaxa.magic_8ball", "--version"], capture_output=True, text=True, check=False, env=env)
     assert proc.returncode == 0, proc.stderr
     assert __version__ in proc.stdout

@@ -12,11 +12,7 @@ from lupaxa.magic_8ball.exceptions import InvalidQuestionError
 def build_parser() -> argparse.ArgumentParser:
     """Return the Magic 8-Ball argument parser."""
     parser = argparse.ArgumentParser(description="Ask the Magic 8-Ball a yes-or-no question.")
-    parser.add_argument(
-        "--version",
-        action="store_true",
-        help="Show version information and exit.",
-    )
+    parser.add_argument("--version", action="store_true", help="Show version information and exit.")
     parser.add_argument("question", nargs="?", help="Yes-or-no question.")
     return parser
 
